@@ -5,7 +5,6 @@ module.exports = (stream,argv) => {
   const useEjson = argv.ejson && /false/i.exec(argv.ejson) ? false : true;
   ['target_uri','target_collection', 'target_indextype'].forEach(key => { if(!argv[key]) throw `${key} missing`;});
   const MongoClient = require('mongodb').MongoClient;
-  console.log(argv.target_uri);
   const coll = new MongoClient(argv.target_uri).connect()
       .then(client => client.db(argv.target_collection).collection(argv.target_indextype));
 
